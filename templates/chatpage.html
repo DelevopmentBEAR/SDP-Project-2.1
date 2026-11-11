@@ -1,27 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>GenAI-Bot</title>
+    <title>Writer's Chatbot</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <style>
-        
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 <div>
-        <h1 align="center"><b>AI-Gen ChatBot</b></h1>
+        <h1 align="center"><b>Writer's Chatbot</b></h1>
         <h4 align="center"><b>Please start your personalized interaction with the chatbot</b></h4>
-        <p align="center"><img src="static\\chatbot1.png" alt="Python-BOT" height="210" width="220"></p>
         <div class="boxed">
             <div>
                 <div id="chatbox">
                     <p class="botText">
-                        <span>Hi! I'm your AI-Generative Chatbot</span>
+                        <span>Hi! I'm your AI-Writer's Assistant Chatbot</span>
                     </p>
                 </div>
                 <div id="userInput">
                     <input id="textInput" type="text" name="msg" placeholder="Message" />
+                    <button id="sendButton" onclick="getBotResponse()">Send</button>
                 </div>
             </div>
             <script>
