@@ -16,8 +16,7 @@ except:
     print("Missing system instruction, quiting program")
     sys.exit()
 
-while True:
-    question = input("> ")
+def get_chat_response(question: str) -> str:
     response = client.models.generate_content(
         model="gemini-3.1-flash-lite",
         contents=question,
@@ -25,4 +24,9 @@ while True:
             system_instruction=system_instruction_text
         )
     )
-    print(response.text)
+    return response.text
+
+if __name__ == "__main__":
+    while True:
+        question = input("> ")
+        print(get_chat_response(question))
