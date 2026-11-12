@@ -23,24 +23,46 @@
                 </div>
             </div>
             <script>
+                {% comment %} Gets the user's message from the input field and sends it to the server {% endcomment %}
                 function getBotResponse() {
-                    var rawText = $("#textInput").val();
+                    {% comment %} Gets the user's message from the input field {% endcomment %}
+                    var rawText = $("#textInput").val(); 
+
+                    {% comment %} Creates HTML for the user's message {% endcomment %}
                     var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+
+                    {% comment %} Clears the input field {% endcomment %}
                     $("#textInput").val("");
+
+                    {% comment %} Appends the user's message to the chatbox {% endcomment %}
                     $("#chatbox").append(userHtml);
+
+                    {% comment %} Scrolls the chatbox to the bottom {% endcomment %}
                     document
                         .getElementById("userInput")
                         .scrollIntoView({ block: "start", behavior: "smooth" });
+
+                    {% comment %} Gets the bot's response from the server {% endcomment %}
                     $.get("/get", { msg: rawText }).done(function (data) {
+
+                        {% comment %} Creates HTML for the bot's response {% endcomment %}
                         var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+
+                        {% comment %} Appends the bot's response to the chatbox {% endcomment %}
                         $("#chatbox").append(botHtml);
+
+                        {% comment %} Scrolls the chatbox to the bottom {% endcomment %}
                         document
                             .getElementById("userInput")
                             .scrollIntoView({ block: "start", behavior: "smooth" });
                     });
                 }
+
+                {% comment %} Allows the user to press the Enter key to send a message {% endcomment %}
                 $("#textInput").keypress(function (e) {
+                    {% comment %} Checks if the Enter key was pressed {% endcomment %}
                     if (e.which == 13) {
+                        {% comment %} Calls the function to get the bot's response {% endcomment %}
                         getBotResponse();
                     }
                 });
