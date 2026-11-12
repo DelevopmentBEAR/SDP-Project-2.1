@@ -25,28 +25,28 @@
            <script>
             {% comment %} This script handles the chat functionality in the HTML {% endcomment %}
                 function getBotResponse() {
-                    {% comment %} Get the user's message {% endcomment %}
+                    // Get the user's message 
                     var rawText = $("#textInput").val();
 
-                    {% comment %} Validate the user's message, if it's empty, return {% endcomment %}
+                    // Validate the user's message, if it's empty, return 
                     if (!rawText.trim()) return;
 
-                    {% comment %} Create the user's message in HTML {% endcomment %}
+                    // Create the user's message in HTML 
                     var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
 
-                    {% comment %} Clear the input field {% endcomment %}
+                    // Clear the input field 
                     $("#textInput").val("");
 
-                    {% comment %} Append the user's message to the chatbox {% endcomment %}
+                    // Append the user's message to the chatbox 
                     $("#chatbox").append(userHtml);
 
-                    {% comment %} Send the user's message to the server and get the bot's response {% endcomment %}
+                    // Send the user's message to the server and get the bot's response 
                     $.post("/chat", { question: rawText }).done(function (data) {
 
-                        {% comment %} Create the bot's response in HTML {% endcomment %}
+                        // Create the bot's response in HTML 
                         var botHtml = '<p class="botText"><span>' + data.answer + "</span></p>";
 
-                        {% comment %} Append the bot's response to the chatbox {% endcomment %}
+                        // Append the bot's response to the chatbox 
                         $("#chatbox").append(botHtml);
                     });
                 }
