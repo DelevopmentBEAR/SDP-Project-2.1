@@ -23,16 +23,30 @@
                 </div>
             </div>
            <script>
+            {% comment %} This script handles the chat functionality in the HTML {% endcomment %}
                 function getBotResponse() {
+                    {% comment %} Get the user's message {% endcomment %}
                     var rawText = $("#textInput").val();
+
+                    {% comment %} Validate the user's message, if it's empty, return {% endcomment %}
                     if (!rawText.trim()) return;
 
+                    {% comment %} Create the user's message in HTML {% endcomment %}
                     var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+
+                    {% comment %} Clear the input field {% endcomment %}
                     $("#textInput").val("");
+
+                    {% comment %} Append the user's message to the chatbox {% endcomment %}
                     $("#chatbox").append(userHtml);
 
+                    {% comment %} Send the user's message to the server and get the bot's response {% endcomment %}
                     $.post("/chat", { question: rawText }).done(function (data) {
+
+                        {% comment %} Create the bot's response in HTML {% endcomment %}
                         var botHtml = '<p class="botText"><span>' + data.answer + "</span></p>";
+
+                        {% comment %} Append the bot's response to the chatbox {% endcomment %}
                         $("#chatbox").append(botHtml);
                     });
                 }
